@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>def qxh():</title><link href="http://qxh.im/" rel="alternate"></link><link href="http://qxh.im/feeds/all.atom.xml" rel="self"></link><id>http://qxh.im/</id><updated>2014-09-12T12:06:00+08:00</updated><entry><title>Python实现异或(xor)加密算法</title><link href="http://qxh.im/articles/2014/09/12/xor.html" rel="alternate"></link><updated>2014-09-12T12:06:00+08:00</updated><author><name>haxx</name></author><id>tag:qxh.im,2014-09-12:articles/2014/09/12/xor.html</id><summary type="html">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;#encoding=UTF-8&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;random&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;seed&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;randint&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;binascii&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;base64&lt;/span&gt;
+
+&lt;span class="n"&gt;str_in&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;请输入一个字符串：&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;you_seed&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;请输入密码：&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;str_in&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;you_seed&lt;/span&gt;
+
+&lt;span class="c1"&gt;#lock&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;my_lock&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lock_str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;lock_seed&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;seed&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lock_seed&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;li_out&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;lock_str&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;randint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;65535&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;li_out&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;unichr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;ord&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;^&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;li_out&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;my_lock_str&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;my_lock&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;str_in&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;you_seed&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;原字符串：&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;str_in&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;加密字符串：&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;my_lock_str&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;还原后字符串：&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;my_lock&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;my_lock_str&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;you_seed&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="xor"></category><category term="加密"></category><category term="算法"></category></entry><entry><title>NSFetchResultsController如何监听relationship的变化？</title><link href="http://qxh.im/articles/2014/06/24/nsfetchresultscontroller-relationship-observer.html" rel="alternate"></link><updated>2014-06-24T12:06:00+08:00</updated><author><name>haxx</name></author><id>tag:qxh.im,2014-06-24:articles/2014/06/24/nsfetchresultscontroller-relationship-observer.html</id><summary type="html">&lt;p&gt;我们知道,当CoreData表中的attribute改变时,使用NSFetchedResultsController可以通知UITableView做出实时的改变。&lt;/p&gt;
+&lt;p&gt;那如果像下图中relationship对象的attribute改变时,如何实现这样的通知呢？&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Core Data Relationship" src="/images/coredata_relationship.png" /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;需要在attribute修改成功后发送如下消息：&lt;/p&gt;
+&lt;p&gt;[contact willChangeValueForKey:@"grp"];
+[contact didChangeValueForKey:@"grp"];&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="Core Data"></category><category term="NSFetchResultsController"></category><category term="relationship"></category></entry><entry><title>APNS证书生成</title><link href="http://qxh.im/articles/2013/11/24/apns-cert-generagion.html" rel="alternate"></link><updated>2013-11-24T12:06:00+08:00</updated><author><name>haxx</name></author><id>tag:qxh.im,2013-11-24:articles/2013/11/24/apns-cert-generagion.html</id><summary type="html">&lt;ul&gt;
+&lt;li&gt;以下步骤需在App ID产生以后进行:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;登录到 &lt;a href="http://developer.apple.com/iphone/manage/overview/index.action"&gt;iPhone Developer Connection Portal&lt;/a&gt; 并点击&lt;em&gt;App IDs&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;选择对应&lt;em&gt;App ID&lt;/em&gt;。（开发与发布不一样的。需注意）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;点击App ID旁的&lt;em&gt;Configure&lt;/em&gt;，然后按下按钮生产 推送通知许可证。根据&lt;em&gt;向导&lt;/em&gt;的步骤生成一个签名并上传，最后下载生成的许可证。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;通过双击&lt;em&gt;.cer&lt;/em&gt;文件将你的&lt;em&gt;aps_developer_identity.cer&lt;/em&gt;引入&lt;em&gt;Keychain&lt;/em&gt;中。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;打开&lt;em&gt;Keychain&lt;/em&gt;,在登录证书(&lt;em&gt;Certificates&lt;/em&gt;)下找到&lt;em&gt;Apple Development Push Services&lt;/em&gt;项，右键&lt;em&gt;Apple Development Push Services&lt;/em&gt;，导出&lt;em&gt;p12&lt;/em&gt;文件，保存为&lt;em&gt;apns-dev-cert.p12&lt;/em&gt;文件。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;单击展开&lt;em&gt;Apple Development Push Services&lt;/em&gt; 对&lt;em&gt;Private Key&lt;/em&gt;做同样操作，保存为&lt;em&gt;apns-dev-key.p12&lt;/em&gt;文件。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;需要通过终端命令将这些文件转换为&lt;em&gt;PEM&lt;/em&gt;格式：&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;openssl pkcs12 -clcerts -nokeys -out apns-dev-cert.pem -in apns-dev-cert.p12
+openssl pkcs12 -nocerts -out apns-dev-key.pem -in apns-dev-key.p12
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;如果你想要移除密码，要么在导出/转换时不要设定或者执行：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;openssl rsa -in apns-dev-key.pem -out apns-dev-key-noenc.pem
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;最后，你需要将键和许可文件合成为&lt;em&gt;apns-dev.pem&lt;/em&gt;文件，此文件在连接到&lt;em&gt;APNS&lt;/em&gt;时需要使用：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cat apns-dev-cert.pem apns-dev-key-noenc.pem &amp;gt; apns-dev.pem
+&lt;/pre&gt;&lt;/div&gt;</summary><category term="APNS"></category><category term="推送"></category><category term="PUSH"></category><category term="证书"></category></entry></feed>

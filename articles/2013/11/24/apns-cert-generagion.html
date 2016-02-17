@@ -1,0 +1,376 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="author" content="haxx" />
+        <meta name="keywords" content="APNS,推送,PUSH,证书" />
+        <meta name="description" content="APNS证书生成" />
+
+<!-- Open Graph tags -->
+<meta property="og:site_name" content="def qxh():"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="APNS证书生成"/>
+    <meta property="og:url" content="http://qxh.im/articles/2013/11/24/apns-cert-generagion.html"/>
+    <meta property="og:description" content="APNS证书生成"/>
+    <meta property="article:published_time" content="2013-11-24" />
+    <meta property="article:section" content="iOS" />
+        <meta property="article:tag" content="APNS" />
+        <meta property="article:tag" content="推送" />
+        <meta property="article:tag" content="PUSH" />
+        <meta property="article:tag" content="证书" />
+        <meta property="article:author" content="haxx" />
+        <meta property="og:image"
+              content="http://qxh.im/True"/>
+
+    <title>APNS证书生成 - def qxh():</title>
+
+        <link rel="stylesheet" href="http://qxh.im/theme/css/bootstrap.min.css" type="text/css" />
+
+    <link href="http://qxh.im/theme/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="http://qxh.im/theme/css/pygments/native.css" rel="stylesheet" />
+    
+    <link href="http://qxh.im/theme/css/pelican-twitchy.min.css" rel="stylesheet" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <!-- Feeds -->
+        <link href="http://qxh.im/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="def qxh(): ATOM Feed" />
+</head>
+<body data-spy="scroll" data-target="#scrollspy">
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper-small" class="twitchy-background">
+            <ul id="accordion-small" class="sidebar-nav sidebar-nav-small">
+                <li>
+        <a href="http://qxh.im" title="def qxh():" class="collapsed">
+            <span class="glyphicon glyphicon-home"></span>
+        </a>
+    </li>
+                <li class="nav-divider"></li>
+                <li>
+        <a href="http://qxh.im/archives.html" title="Recent Articles" class="collapsed">
+            <span class="glyphicon glyphicon-th-list"></span>
+        </a>
+    </li>
+                
+                <li class="nav-divider"></li>
+                <li id="share-small">
+                    <a data-toggle="collapse" data-parent="#accordion-small" href="#collapse-share-small" title="Share" class="collapsed">
+                        <i class="fa fa-share-alt padding-small"></i>
+                    </a>
+                </li>
+                <li class="panel anti-panel"><ul id="collapse-share-small" class="collapse ">
+                    <li>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=http://qxh.im/articles/2013/11/24/apns-cert-generagion.html" title="Share via Facebook" target="popup">
+                            <i class="fa fa-facebook-square padding-small"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://plus.google.com/share?url=http://qxh.im/articles/2013/11/24/apns-cert-generagion.html" title="Share via Google+" target="popup">
+                            <i class="fa fa-google-plus padding-small"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-count="vertical" title="Share via Twitter" target="popup">
+                            <i class="fa fa-twitter-square padding-small"></i>
+                        </a>
+                    </li>
+                </ul></li>
+                <li class="nav-divider"></li>
+                <li>
+                    <a data-toggle="collapse" data-parent="#accordion-small" href="#collapse-social-small" title="Social" class="collapsed">
+                        <i class="fa fa-users padding-small"></i>
+                    </a>
+                </li>
+                <li class="panel anti-panel"><ul id="collapse-social-small" class="collapse ">
+                    <li>
+                        <a href="https://github.com/haxos" title="Github"><i class="fa fa-github-square fa-lg padding-small"></i></a>
+                    </li>
+                </ul></li>
+                <li class="nav-divider"></li>
+                <li>
+        <a href="#" title="Back to top" class="collapsed">
+            <span class="fa fa-arrow-up"></span>
+        </a>
+    </li>
+            </ul>
+        </div>
+        <div id="sidebar-wrapper" class="twitchy-background">
+            <ul id="accordion" class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="http://qxh.im/">
+<img src="http://qxh.im//images/logo.png" width="200" alt="Sitelogo"/>                     </a>
+                </li>
+                    <li class="nav-divider"></li>
+                    <li>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse-latest">
+                            <span class="glyphicon glyphicon-th-list padding-small"></span>
+                           Recent Articles 
+                        </a>
+                    </li>
+                    <li class="panel anti-panel"><ul id="collapse-latest" class="sidebar_submenu collapse in">
+                        <li class="">
+                            <a class="hide-overflow" href="http://qxh.im/articles/2014/09/12/xor.html" title="Python实现异或(xor)加密算法">
+                                <i class="fa fa-file-text padding-small"></i>
+                                Python实现异或(xor)加密算法
+                            </a>
+                        </li>
+                        <li class="">
+                            <a class="hide-overflow" href="http://qxh.im/articles/2014/06/24/nsfetchresultscontroller-relationship-observer.html" title="NSFetchResultsController如何监听relationship的变化？">
+                                <i class="fa fa-file-text padding-small"></i>
+                                NSFetchResultsController如何监听relationship的变化？
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a class="hide-overflow" href="http://qxh.im/articles/2013/11/24/apns-cert-generagion.html" title="APNS证书生成">
+                                <i class="fa fa-file-text padding-small"></i>
+                                APNS证书生成
+                            </a>
+                        </li>
+                    <li>
+                        <a href="http://qxh.im/archives.html">
+                            <i class="fa fa-arrow-right padding-small"></i>
+                            More
+                        </a>
+                    </li>
+                    </ul></li>
+                <li class="nav-divider"></li>
+                <li id="share">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-share" title="Share" class="collapsed">
+                        <i class="fa fa-share-alt padding-small"></i>
+                        Share
+                    </a>
+                </li>
+                <li class="panel anti-panel"><ul id="collapse-share" class="sidebar_submenu collapse ">
+                    <li>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=http://qxh.im/articles/2013/11/24/apns-cert-generagion.html" target="popup">
+                            <i class="fa fa-facebook-square padding-small"></i>
+                            Facebook
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://plus.google.com/share?url=http://qxh.im/articles/2013/11/24/apns-cert-generagion.html" target="popup">
+                            <i class="fa fa-google-plus padding-small"></i>
+                            Google+
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-count="vertical" target="popup">
+                            <i class="fa fa-twitter-square padding-small"></i>
+                            Twitter
+                        </a>
+                    </li>
+                </ul></li>
+                <li class="nav-divider"></li>
+                <li>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-social">
+                        <i class="fa fa-users padding-small"></i>
+                        Contact
+                    </a>
+                </li>
+                <li class="panel anti-panel"><ul id="collapse-social" class="sidebar_submenu collapse ">
+                    <li>
+                        <a href="https://github.com/haxos" title="Github">
+                            <i class="fa fa-github-square fa-lg padding-small"></i>
+                            Github
+                        </a>
+                    </li>
+                </ul></li>
+                
+                <li class="nav-divider"></li>
+                <li>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-pages">
+                        <i class="fa fa-folder-open padding-small"></i>
+                        Pages
+                    </a>
+                </li>
+                <li class="panel anti-panel"><ul id="collapse-pages" class="sidebar_submenu collapse ">
+                </ul></li>
+                
+                <li class="nav-divider"></li>
+                <li>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-categories">
+                        <i class="fa fa-folder-open padding-small"></i>
+                        Categories
+                    </a>
+                </li>
+                <li class="panel anti-panel"><ul id="collapse-categories" class="sidebar_submenu collapse ">
+                    <li class="active">
+                        <a href="http://qxh.im/category/ios.html">
+                            <i class="fa fa-folder-open padding-small"></i>
+                            iOS
+                            <span class="badge pull-right categorybadge">2</span>
+                        </a>
+                    </li>
+                    <li >
+                        <a href="http://qxh.im/category/python.html">
+                            <i class="fa fa-folder-open padding-small"></i>
+                            Python
+                            <span class="badge pull-right categorybadge">1</span>
+                        </a>
+                    </li>
+                </ul></li>
+                
+                <li class="nav-divider"></li>
+                <li>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse-tags">
+                        <i class="fa fa-tags padding-small"></i>
+                        Tags
+                    </a>
+                </li>
+                <li class="panel anti-panel"><ul id="collapse-tags" class="sidebar_submenu collapse ">
+                </ul></li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <!-- open/close sidebar -->
+        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">
+            <span id="right-arrow" class="glyphicon glyphicon-chevron-right"  title="expand sidebar"></span>
+            <span id="left-arrow" class="glyphicon glyphicon-chevron-left" title="minimize sidebar"></span>
+        </a>
+       <!-- /open/close sidebar -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+<section id="content">
+    <article>
+        <div class="row">
+            <div class="col-lg-9">
+                <header class="page-header">
+                    <h1>
+                        <a href="http://qxh.im/articles/2013/11/24/apns-cert-generagion.html"
+                           rel="bookmark"
+                           title="Permalink to APNS证书生成">
+                            APNS证书生成
+                        </a>
+                        <small>
+<div class="post-info">
+    <div class="publish-info-block">
+        <small>
+            <span class="published">
+                <i class="fa fa-calendar padding-small"></i><time datetime="2013-11-24T12:06:00+08:00"> 日 24 十一月 2013</time>
+            </span>
+            <span class="category">
+                <i class="fa fa-folder-open padding-small"></i><a href="http://qxh.im/category/ios.html">iOS</a>
+            </span>
+            <span class="tags">
+                <i class="fa fa-tags padding-small"></i>
+                <a href="http://qxh.im/tag/apns.html">APNS</a> /                 <a href="http://qxh.im/tag/tui-song.html">推送</a> /                 <a href="http://qxh.im/tag/push.html">PUSH</a> /                 <a href="http://qxh.im/tag/zheng-shu.html">证书</a>            </span>
+        </small>
+    </div>
+</div><!-- /.post-info -->                        </small>
+                    </h1>
+                </header>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="entry-content">
+                    <ul>
+<li>以下步骤需在App ID产生以后进行:</li>
+</ul>
+<blockquote>
+<ol>
+<li>
+<p>登录到 <a href="http://developer.apple.com/iphone/manage/overview/index.action">iPhone Developer Connection Portal</a> 并点击<em>App IDs</em></p>
+</li>
+<li>
+<p>选择对应<em>App ID</em>。（开发与发布不一样的。需注意）</p>
+</li>
+<li>
+<p>点击App ID旁的<em>Configure</em>，然后按下按钮生产 推送通知许可证。根据<em>向导</em>的步骤生成一个签名并上传，最后下载生成的许可证。</p>
+</li>
+<li>
+<p>通过双击<em>.cer</em>文件将你的<em>aps_developer_identity.cer</em>引入<em>Keychain</em>中。</p>
+</li>
+<li>
+<p>打开<em>Keychain</em>,在登录证书(<em>Certificates</em>)下找到<em>Apple Development Push Services</em>项，右键<em>Apple Development Push Services</em>，导出<em>p12</em>文件，保存为<em>apns-dev-cert.p12</em>文件。</p>
+</li>
+<li>
+<p>单击展开<em>Apple Development Push Services</em> 对<em>Private Key</em>做同样操作，保存为<em>apns-dev-key.p12</em>文件。</p>
+</li>
+<li>
+<p>需要通过终端命令将这些文件转换为<em>PEM</em>格式：</p>
+</li>
+</ol>
+</blockquote>
+<div class="highlight"><pre><span></span>openssl pkcs12 -clcerts -nokeys -out apns-dev-cert.pem -in apns-dev-cert.p12
+openssl pkcs12 -nocerts -out apns-dev-key.pem -in apns-dev-key.p12
+</pre></div>
+
+
+<blockquote>
+<ol>
+<li>如果你想要移除密码，要么在导出/转换时不要设定或者执行：</li>
+</ol>
+</blockquote>
+<div class="highlight"><pre><span></span>openssl rsa -in apns-dev-key.pem -out apns-dev-key-noenc.pem
+</pre></div>
+
+
+<blockquote>
+<ol>
+<li>最后，你需要将键和许可文件合成为<em>apns-dev.pem</em>文件，此文件在连接到<em>APNS</em>时需要使用：</li>
+</ol>
+</blockquote>
+<div class="highlight"><pre><span></span>cat apns-dev-cert.pem apns-dev-key-noenc.pem &gt; apns-dev.pem
+</pre></div>
+                </div>
+                <footer class="text-right">
+                    <p>- haxx</p>
+                </footer>
+
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2013-11-apns-cert-generagion" data-title="APNS证书生成" data-url="http://qxh.im/articles/2013/11/24/apns-cert-generagion.html"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"haxx"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+            </div>
+        </div>
+    </article>
+</section>
+<footer>
+    <hr>
+    <div class="row">
+        <div class="col-lg-9 text-center">
+            <p><small>
+                Built by <a href="http://docs.getpelican.com/en/latest">Pelican</a> / <a href="https://github.com/ingwinlu/pelican-twitchy">pelican-twitchy</a>
+                &middot;                    &copy; 2014 qxh
+            </small></p>
+        </div>
+    </div>
+</footer>            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <!-- jQuery Version 1.11.2 -->
+    <script src="http://qxh.im/theme/js/jquery-1.11.2.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="http://qxh.im/theme/js/bootstrap.min.js"></script>
+    <!-- twitchy Script -->
+    <script src="http://qxh.im/theme/js/pelican_twitchy.min.js"></script>
+</body>
+</html>
