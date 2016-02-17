@@ -47,7 +47,7 @@ LINKS = (
 
 # Social widget
 SOCIAL = (
-        ('Github', 'https://github.com/haxos'),
+        ('Github', 'https://github.com/0x51'),
 )
 
 
@@ -57,7 +57,7 @@ DEFAULT_PAGINATION = 10
 #RELATIVE_URLS = True
 
 # Disqus
-#DISQUS_SITENAME = u"heartfly"
+#DISQUS_SITENAME = u"qxh"
 DUOSHUO_SITENAME = u"qxh"
 
 # Content path
