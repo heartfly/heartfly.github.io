@@ -3,7 +3,7 @@ Date: 2014-9-12 12:06
 Category: Python
 tags: xor, 加密, 算法
 Slug: xor
-Author: haxx
+Author: qxh
 Summary: Python实现异或(xor)加密算法
 
     #encoding=UTF-8

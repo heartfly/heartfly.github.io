@@ -3,7 +3,7 @@ Date: 2013-11-24 12:06
 Category: iOS
 tags: APNS, 推送, PUSH, 证书
 Slug: apns-cert-generagion
-Author: haxx
+Author: qxh
 Summary: APNS证书生成
 
 * 以下步骤需在App ID产生以后进行:
