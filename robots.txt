@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: http://heartfly.github.io/sitemap.xml
+Sitemap: http://qxh.im/sitemap.xml
