@@ -1,7 +1,7 @@
 Title: Python实现异或(xor)加密算法
 Date: 2014-9-12 12:06
-Category: Python
-tags: xor, 加密, 算法
+Category: 编程
+tags: Python, xor, 加密, 算法
 Slug: xor
 Author: qxh
 Summary: Python实现异或(xor)加密算法

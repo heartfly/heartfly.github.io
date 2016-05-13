@@ -1,7 +1,7 @@
 Title: APNS证书生成
 Date: 2013-11-24 12:06
-Category: iOS
-tags: APNS, 推送, PUSH, 证书
+Category: 编程
+tags: iOS, APNS, 推送, PUSH, 证书
 Slug: apns-cert-generagion
 Author: qxh
 Summary: APNS证书生成
