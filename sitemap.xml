@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://qxh.im/</loc>
-<lastmod>2016-02-17T12:09:38-00:00</lastmod>
+<lastmod>2016-05-13T17:37:06-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>http://qxh.im/archives.html</loc>
-<lastmod>2016-02-17T12:09:38-00:00</lastmod>
+<lastmod>2016-05-13T17:37:06-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>http://qxh.im/tags.html</loc>
-<lastmod>2016-02-17T12:09:38-00:00</lastmod>
+<lastmod>2016-05-13T17:37:06-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>http://qxh.im/categories.html</loc>
-<lastmod>2016-02-17T12:09:38-00:00</lastmod>
+<lastmod>2016-05-13T17:37:06-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
 </url>
@@ -53,14 +53,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://qxh.im/category/ios.html</loc>
-<lastmod>2014-06-24T12:06:00+08:06</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.8</priority>
-</url>
-
-<url>
-<loc>http://qxh.im/category/python.html</loc>
+<loc>http://qxh.im/category/bian-cheng.html</loc>
 <lastmod>2014-09-12T12:06:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>
@@ -95,7 +88,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>http://qxh.im/tag/python.html</loc>
+<lastmod>2014-09-12T12:06:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.8</priority>
+</url>
+
+<url>
 <loc>http://qxh.im/tag/core-data.html</loc>
+<lastmod>2014-06-24T12:06:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.8</priority>
+</url>
+
+<url>
+<loc>http://qxh.im/tag/ios.html</loc>
 <lastmod>2014-06-24T12:06:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.8</priority>

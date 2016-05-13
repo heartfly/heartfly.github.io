@@ -47,7 +47,7 @@ LINKS = (
 
 # Social widget
 SOCIAL = (
-        ('Github', 'https://github.com/0x51'),
+        ('Github', 'https://github.com/holyq'),
 )
 
 
